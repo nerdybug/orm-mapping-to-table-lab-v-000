@@ -17,6 +17,7 @@ class Student
       grade INTEGER
       );
     SQL
+    
     DB[:conn].execute(create_sql)
   end
 
@@ -24,6 +25,7 @@ class Student
     drop_sql = <<-SQL
       DROP TABLE students;
     SQL
+    
     DB[:conn].execute(drop_sql)
   end
 
@@ -31,7 +33,10 @@ class Student
     insert_sql = <<-SQL
     INSERT INTO students (name, grade) VALUES (?, ?)
     SQL
+    
     DB[:conn].execute(insert_sql, self.name, self.grade)
+
+    @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
   end
 
 end
