@@ -33,5 +33,5 @@ class Student
     SQL
     DB[:conn].execute(insert_sql, self.name, self.grade)
   end
-  
+
 end
